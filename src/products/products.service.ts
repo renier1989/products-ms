@@ -55,11 +55,14 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
+
+    const {id:__ , ...data}= updateProductDto; // esto es para poder limpiar lo que viene del updateProductDto y para lo que se quiere actualizar sin el id (esto por la actualizacion a microsevicio)
+
     await this.findOne(id); // uso este metodo previo para validar que existe el producto con el id
 
     return this.product.update({
       where: { id },
-      data: updateProductDto
+      data: data
     })
   }
 
