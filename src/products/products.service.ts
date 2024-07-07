@@ -11,10 +11,14 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
   onModuleInit() {
     this.$connect();
     this.logger.log(`Database ready to work! :)`);
-    // throw new Error('Method not implemented.');
   }
 
   create(createProductDto: CreateProductDto) {
+
+    return this.product.create({
+      data: createProductDto
+    })
+
     return 'This action adds a new product';
   }
 
